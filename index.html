@@ -987,32 +987,61 @@ body {
 <div class="modal fade" id="登入彈窗" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content 奢華毛玻璃卡片">
-            
             <div class="modal-header border-0">
                 <h5 class="modal-title 金色文字" style="letter-spacing: 3px;">MEMBER LOGIN</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body p-4">
                 <div class="mb-4">
-                    <label class="白色透明文字 小字體 mb-2 d-block">訪客稱呼</label>
-                    <input type="text" id="彈窗使用者帳號" class="表單元件 毛玻璃輸入框" placeholder="今晚該如何稱呼您？">
+                    <label class="白色透明文字 小字體 mb-2 d-block">電子信箱 (Email)</label>
+                    <input type="email" id="登入-信箱" class="表單元件 毛玻璃輸入框" placeholder="請輸入您的 Email">
                 </div>
-                
                 <div class="mb-4">
-                    <label class="白色透明文字 小字體 mb-2 d-block">通關密語</label>
-                    <input type="password" class="表單元件 毛玻璃輸入框" placeholder="請輸入密碼 (Demo 可不填)">
+                    <label class="白色透明文字 小字體 mb-2 d-block">通關密語 (Password)</label>
+                    <input type="password" id="登入-密碼" class="表單元件 毛玻璃輸入框" placeholder="請輸入密碼">
                 </div>
-
                 <button class="按鈕 奢華金填滿按鈕 寬度百分百" onclick="執行彈窗登入()">
                     確認登入
                 </button>
-                
                 <div class="text-center mt-3">
-                    <small class="白色透明文字">還沒加入圖書館？ <a href="#" class="金色文字" style="text-decoration: none;">立即註冊</a></small>
+                    <small class="白色透明文字">還沒加入圖書館？ 
+                        <a href="#" class="金色文字" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#註冊彈窗">立即註冊</a>
+                    </small>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="註冊彈窗" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content 奢華毛玻璃卡片">
+            <div class="modal-header border-0">
+                <h5 class="modal-title 金色文字" style="letter-spacing: 3px;">SIGN UP</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="mb-3">
+                    <label class="白色透明文字 小字體 mb-2 d-block">您的稱呼 (Username)</label>
+                    <input type="text" id="註冊-帳號" class="表單元件 毛玻璃輸入框" placeholder="例：酒神戴奧尼索斯">
+                </div>
+                <div class="mb-3">
+                    <label class="白色透明文字 小字體 mb-2 d-block">電子信箱 (Email)</label>
+                    <input type="email" id="註冊-信箱" class="表單元件 毛玻璃輸入框" placeholder="example@email.com">
+                </div>
+                <div class="mb-4">
+                    <label class="白色透明文字 小字體 mb-2 d-block">設定密碼 (Password)</label>
+                    <input type="password" id="註冊-密碼" class="表單元件 毛玻璃輸入框" placeholder="請設定 6 位數以上密碼">
+                </div>
+                <button class="按鈕 奢華金填滿按鈕 寬度百分百" onclick="執行API註冊()">
+                    確認註冊
+                </button>
+                <div class="text-center mt-3">
+                    <small class="白色透明文字">已經有帳號了？ 
+                        <a href="#" class="金色文字" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#登入彈窗">直接登入</a>
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1030,6 +1059,39 @@ body {
     </div>
 </div>
 
+<!-- 註冊彈窗 -->
+
+<div class="modal fade" id="註冊彈窗" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content 奢華毛玻璃卡片">
+            <div class="modal-header border-0">
+                <h5 class="modal-title 金色文字" style="letter-spacing: 3px;">SIGN UP</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="mb-3">
+                    <label class="白色透明文字 小字體 mb-2 d-block">您的稱呼 (Username)</label>
+                    <input type="text" id="註冊-帳號" class="表單元件 毛玻璃輸入框" placeholder="例：酒神戴奧尼索斯">
+                </div>
+                <div class="mb-3">
+                    <label class="白色透明文字 小字體 mb-2 d-block">電子信箱 (Email)</label>
+                    <input type="email" id="註冊-信箱" class="表單元件 毛玻璃輸入框" placeholder="example@email.com">
+                </div>
+                <div class="mb-4">
+                    <label class="白色透明文字 小字體 mb-2 d-block">設定密碼 (Password)</label>
+                    <input type="password" id="註冊-密碼" class="表單元件 毛玻璃輸入框" placeholder="請設定 6 位數以上密碼">
+                </div>
+                <button class="按鈕 奢華金填滿按鈕 寬度百分百" onclick="執行API註冊()">
+                    確認註冊
+                </button>
+                <div class="text-center mt-3">
+                    <small class="白色透明文字">已經有帳號了？ <a href="#" class="金色文字" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#登入彈窗">直接登入</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -1039,120 +1101,239 @@ body {
 
 
     <script>
-        // JS 1 (資料庫：雞尾酒清單 Array)
-        // --- 1. 資料庫 (JSON Array) ---
-        // 資料內容的 key (如 id, name) 為了程式穩定不建議改成中文，但顯示的內容是中文的
+     
+     // ==========================================
+// 🔥 [全域設定] 連線與變數
+// ==========================================
 
-        // --- 1. 資料庫 (JSON Array) ---
-        let cocktails = [];
+// 1. 設定後端 API 網址 (目前設定為連線到你本地端)
+/* const API_URL = "http://localhost:3000/api"; */
+// 如果要連線到雲端，請把上面那行註解掉，改用下面這行：
+const API_URL = "https://tipsy-server.onrender.com/api";
 
-      // (保留最上面的 const cocktails = [...] 資料陣列，不要刪掉！)
+// 2. 資料庫與狀態變數
+let cocktails = [];        // 存放從後端抓回來的酒單
+let 當前顯示列表 = [];      // 目前畫面上看到的酒 (含篩選後)
+let 當前酒杯ID = null;      // 目前打開的是哪一杯
+let 當前頁碼 = 1;
+const 每頁數量 = 16;
+const 網格容器 = document.getElementById('雞尾酒展示網格');
 
-    // JS 2 (全域變數宣告)
-    // ==========================================
-    // 核心變數
-    // ==========================================
-    let 當前顯示列表 = cocktails; 
-    let 當前酒杯ID = null;
-    let 當前頁碼 = 1;
-    const 每頁數量 = 16; 
-    const 網格容器 = document.getElementById('雞尾酒展示網格');
+// ==========================================
+// 🔥 [核心功能] 初始化與資料串接 (Fetch)
+// ==========================================
 
-    // JS 3 (分頁與Tab智慧分流邏輯)
-    // ==========================================
-    // 1. 智慧分流器 (解決命名衝突的關鍵！)
-    // ==========================================
-    // 這個函式會自動判斷你是要「換頁碼」還是「換卡片分頁」
-    function 切換分頁(參數) {
-        if (typeof 參數 === 'number') {
-            // 如果傳進來是數字 (例如 1, 2, -1)，執行換頁
-            執行頁碼切換(參數);
-        } else {
-            // 如果傳進來是文字 (例如 '故事', '步驟')，執行卡片內容切換
-            切換卡片內容Tab(參數);
-        }
-    }
+// 1. 網頁載入時要做的事
+window.onload = async function() {
+    // A. 檢查有沒有登入過 (改讀取 Token)
+    const token = localStorage.getItem('tipsy_token');
+    const userStr = localStorage.getItem('tipsy_user');
 
-    // JS 4 (頁碼計算與切換邏輯)
-    // ==========================================
-    // 2. 分頁控制邏輯 (內部使用)
-    // ==========================================
-    function 執行頁碼切換(目標頁碼) {
-        const 總頁數 = Math.ceil(當前顯示列表.length / 每頁數量) || 1;
+    if (token && userStr) {
+        const user = JSON.parse(userStr);
+        console.log("👋 歡迎回來，", user.username);
+        切換至歡迎介面(user);
         
-        if (目標頁碼 > 總頁數) 目標頁碼 = 總頁數;
-        if (目標頁碼 < 1) 目標頁碼 = 1;
+        // B. 如果有登入，去後端同步最新的「收藏清單」
+        await 同步最新收藏(token);
+    }
 
-        當前頁碼 = 目標頁碼;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // C. 抓取酒單資料
+    串接後端資料();
+};
+
+// 2. 向後端抓取所有酒單 (GET)
+async function 串接後端資料() {
+    try {
+        const response = await fetch(`${API_URL}/cocktails`);
+        cocktails = await response.json();
+        console.log("✅ 成功載入酒單:", cocktails.length, "杯");
+        
+        // 預設顯示全部
+        當前顯示列表 = cocktails;
         渲染酒卡(當前顯示列表);
+        
+    } catch (error) {
+        console.error("❌ 連線失敗:", error);
+        網格容器.innerHTML = `
+            <div class="text-center mt-5 text-white">
+                <h3>連線失敗 😓</h3>
+                <p>請確認你的後端伺服器 (node server.js) 已經啟動！</p>
+            </div>`;
     }
+}
 
-    function 處理輸入跳轉(輸入值) {
-        const 數字 = parseInt(輸入值.replace(/[^0-9]/g, '')); 
-        if (isNaN(數字)) {
-            document.getElementById('頁碼輸入框').value = 當前頁碼;
-            return;
+// 3. 同步收藏 (確保手機和電腦收藏同步)
+async function 同步最新收藏(token) {
+    try {
+        const res = await fetch(`${API_URL}/me`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem('我的收藏清單', JSON.stringify(data.user.favorites));
+            localStorage.setItem('tipsy_user', JSON.stringify(data.user));
         }
-        // 呼叫智慧分流器，傳入數字
-        切換分頁(數字);
+    } catch (err) {
+        console.error("同步收藏失敗，可能 Token 過期", err);
+        處理登出(); // 過期就登出
+    }
+}
+
+// ==========================================
+// 🔥 [會員系統] 登入與註冊邏輯
+// ==========================================
+
+// 1. 執行註冊 (API)
+async function 執行API註冊() {
+    const username = document.getElementById('註冊-帳號').value;
+    const email = document.getElementById('註冊-信箱').value;
+    const password = document.getElementById('註冊-密碼').value;
+
+    if(!username || !email || !password) {
+        alert("請填寫完整資訊"); return;
     }
 
-   // JS 5 (酒卡渲染引擎)
+    try {
+        const res = await fetch(`${API_URL}/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            alert("🎉 註冊成功！歡迎加入微醺圖書館");
+            完成登入程序(data); // 註冊後直接登入
+            bootstrap.Modal.getInstance(document.getElementById('註冊彈窗')).hide();
+        } else {
+            alert("註冊失敗：" + data.message);
+        }
+    } catch (err) {
+        alert("系統錯誤，請檢查後端連線");
+    }
+}
+
+// 2. 執行登入 (API)
+async function 執行彈窗登入() {
+    const email = document.getElementById('登入-信箱').value;
+    const password = document.getElementById('登入-密碼').value;
+
+    if(!email || !password) {
+        alert("請輸入 Email 和密碼"); return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            完成登入程序(data);
+            bootstrap.Modal.getInstance(document.getElementById('登入彈窗')).hide();
+        } else {
+            alert("登入失敗：" + data.message);
+        }
+    } catch (err) {
+        alert("登入連線錯誤，請稍後再試");
+    }
+}
+
+// 3. 登入成功後的處理 (存 Token)
+function 完成登入程序(data) {
+    localStorage.setItem('tipsy_token', data.token);
+    localStorage.setItem('tipsy_user', JSON.stringify(data.user));
+    // 後端回傳的 favorites 才是最新的
+    localStorage.setItem('我的收藏清單', JSON.stringify(data.user.favorites || []));
+    
+    切換至歡迎介面(data.user);
+    顯示通知(`歡迎回來，${data.user.username}`);
+    渲染酒卡(當前顯示列表); // 重畫畫面，讓愛心亮起來
+}
+
+// 4. 登出
+function 處理登出() {
+    localStorage.removeItem('tipsy_token');
+    localStorage.removeItem('tipsy_user');
+    localStorage.removeItem('我的收藏清單');
+    location.reload(); 
+}
+
+// 5. 更新側邊欄顯示
+function 切換至歡迎介面(user) {
+    const 會員區塊 = document.querySelector('.會員中心區');
+    const 收藏數 = JSON.parse(localStorage.getItem('我的收藏清單'))?.length || 0;
+    
+    會員區塊.innerHTML = `
+      <div class="歡迎容器" style="padding: 10px 0;">
+        <h6 class="金色文字" style="margin-bottom: 5px;">晚安，${user.username}</h6>
+        <button class="btn p-0 text-start" onclick="只顯示收藏()" style="border:none; background:none;">
+            <p class="白色透明文字 小字體" style="font-size: 0.9rem; cursor: pointer;">
+                已收藏 <span class="金色文字" style="text-decoration: underline;">${收藏數}</span> 杯調酒
+            </p>
+        </button>
+        <div class="mt-2">
+            <a href="#" class="導覽連結 白色文字" onclick="處理登出()">
+                <i class="bi bi-box-arrow-right me-2"></i> 登出
+            </a>
+        </div>
+      </div>
+    `;
+}
+
 // ==========================================
-// 3. 渲染引擎
+// 🔥 [畫面渲染] 渲染、分頁、篩選
 // ==========================================
+
+// 1. 渲染酒卡 (畫畫面) - 已修正 ID 問題
 function 渲染酒卡(data) {
     當前顯示列表 = data;
-    
     const 總數 = data.length;
     const 總頁數 = Math.ceil(總數 / 每頁數量) || 1;
     
-    // 更新 UI (頁碼文字)
+    // 更新頁碼 UI
     const 總頁數文字 = document.getElementById('總頁數文字');
     if (總頁數文字) 總頁數文字.innerText = 總頁數;
-    
     const 頁碼輸入框 = document.getElementById('頁碼輸入框');
     if (頁碼輸入框) 頁碼輸入框.value = 當前頁碼;
 
-    // 計算這一頁要顯示哪些資料 (切片)
+    // 計算這一頁要顯示哪些
     const 開始 = (當前頁碼 - 1) * 每頁數量;
     const 結束 = 開始 + 每頁數量;
     const 這一頁的內容 = data.slice(開始, 結束);
 
-    // ⚠️ 關鍵步驟：清空容器
-    // 這行程式碼會把原本在 HTML 裡的「載入中轉圈圈」或是「上一頁的酒卡」全部刪掉
-    網格容器.innerHTML = ''; 
-    
-    // 如果資料是空的 (例如搜尋不到)
+    網格容器.innerHTML = ''; // 清空舊的
+
     if (這一頁的內容.length === 0) {
         網格容器.innerHTML = '<div class="text-white text-center w-100 mt-5">找不到符合條件的調酒。</div>';
-        // 停用上下頁按鈕
-        if(document.getElementById('分頁-上一頁')) document.getElementById('分頁-上一頁').disabled = true;
-        if(document.getElementById('分頁-下一頁')) document.getElementById('分頁-下一頁').disabled = true;
         return;
     }
 
-    // 開始畫新的酒卡
+    // 開始畫卡片
     這一頁的內容.forEach(drink => {
         const col = document.createElement('div');
         col.className = 'col-6 col-md-4 col-lg-3';
         
-        // 處理收藏狀態
+        // 判斷是否收藏 (從 LocalStorage 讀取)
         const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-        const 有人登入嗎 = localStorage.getItem('微醺圖書館_訪客名字');
-        const isFav = 有人登入嗎 && 收藏清單.includes(drink.id);
+        
+        // 🔥 這裡改用 _id 來判斷，因為後端用的是 MongoDB ID
+        const isFav = 收藏清單.includes(drink._id);
+        
         const 愛心Class = isFav ? '已收藏' : '';
         const 愛心Icon = isFav ? 'bi-heart-fill' : 'bi-heart';
         
-        // 處理基酒顯示 (如果是陣列就用 / 分隔)
         let 顯示基酒 = Array.isArray(drink.base) ? drink.base.join(' / ') : drink.base;
 
+        // 🔥 注意：這裡的 onclick 改成了傳送 '${drink._id}' (有引號)
         col.innerHTML = `
-            <div class="card 特調酒卡" onclick="顯示詳細資訊(${drink.id})">
+            <div class="card 特調酒卡" onclick="顯示詳細資訊('${drink._id}')">
                 <div style="position: relative;">
                     <img src="${drink.img}" class="card-img-top" alt="${drink.name}">
-                    <div class="愛心按鈕 ${愛心Class}" onclick="切換收藏狀態(${drink.id}, event)" id="card-heart-${drink.id}">
+                    <div class="愛心按鈕 ${愛心Class}" onclick="切換收藏狀態('${drink._id}', event)" id="card-heart-${drink._id}">
                         <i class="bi ${愛心Icon} 愛心圖示"></i>
                     </div>
                 </div>
@@ -1167,413 +1348,269 @@ function 渲染酒卡(data) {
         網格容器.appendChild(col);
     });
 
-    // 恢復分頁按鈕狀態 (如果有資料，按鈕要恢復可以按)
+    // 更新按鈕狀態
     const 上一頁鈕 = document.getElementById('分頁-上一頁');
     const 下一頁鈕 = document.getElementById('分頁-下一頁');
     if (上一頁鈕) 上一頁鈕.disabled = (當前頁碼 === 1);
     if (下一頁鈕) 下一頁鈕.disabled = (當前頁碼 === 總頁數);
 }
 
-    // JS 6 (搜尋與篩選邏輯)
-    // ==========================================
-    // 4. 篩選邏輯
-    // ==========================================
-    function 執行篩選() {
-        const 電腦搜 = document.getElementById('搜尋輸入').value.trim();
-        const 手機搜 = document.getElementById('搜尋輸入_手機') ? document.getElementById('搜尋輸入_手機').value.trim() : '';
-        const 關鍵字 = (電腦搜 || 手機搜).toLowerCase();
+// 2. 切換收藏狀態 (API)
+async function 切換收藏狀態(id, event) {
+    if (event) event.stopPropagation();
 
-        const 取得值 = (電腦ID, 手機ID) => {
-            const 電腦值 = document.getElementById(電腦ID).value;
-            const 手機元件 = document.getElementById(手機ID);
-            const 手機值 = 手機元件 ? 手機元件.value : 'all';
-            return (電腦值 !== 'all') ? 電腦值 : 手機值;
-        };
-
-        const 選到的基酒 = 取得值('篩選-基酒', '篩選-基酒-手機');
-        const 選到的濃度 = 取得值('篩選-濃度', '篩選-濃度-手機');
-        const 選到的口感 = 取得值('篩選-口感', '篩選-口感-手機');
-
-        const 篩選結果 = cocktails.filter(item => {
-            const 名字符合 = item.name.toLowerCase().includes(關鍵字);
-            const 材料符合 = item.ingredients.toLowerCase().includes(關鍵字);
-            const 搜尋符合 = 關鍵字 === "" || 名字符合 || 材料符合;
-
-            let 基酒符合 = (選到的基酒 === 'all') ? true : 
-                (Array.isArray(item.base) ? item.base.includes(選到的基酒) : item.base === 選到的基酒);
-            
-            const 濃度符合 = (選到的濃度 === 'all' || item.abvLevel === 選到的濃度);
-            const 口感符合 = (選到的口感 === 'all' || item.taste === 選到的口感);
-
-            return 搜尋符合 && 基酒符合 && 濃度符合 && 口感符合;
-        });
-
-        當前頁碼 = 1; 
-        渲染酒卡(篩選結果);
+    // 🔥 檢查是否有 Token (這是新的驗證方式)
+    const token = localStorage.getItem('tipsy_token');
+    if (!token) {
+        alert("請先登入會員，才能使用收藏功能！");
+        const 登入彈窗實體 = new bootstrap.Modal(document.getElementById('登入彈窗'));
+        登入彈窗實體.show();
+        return;
     }
 
-    // JS 7 (詳情彈窗與分頁內容切換)
-    // ==========================================
-    // 5. 彈窗與卡片內容切換
-    // ==========================================
-    const 我的彈窗 = new bootstrap.Modal(document.getElementById('詳情彈窗'));
-
-    function 顯示詳細資訊(id, isRandom = false) {
-        當前酒杯ID = id;
-        const drink = cocktails.find(item => item.id === id);
-        
-        document.getElementById('彈窗-標題').innerText = drink.name;
-        let modalBase = Array.isArray(drink.base) ? drink.base.join(' / ') : drink.base;
-        document.getElementById('彈窗-基酒').innerText = modalBase;
-        document.getElementById('彈窗-濃度').innerText = drink.abvDisplay;
-        document.getElementById('彈窗-口感').innerText = drink.taste;
-        document.getElementById('彈窗-材料列表').innerText = drink.ingredients;
-        document.getElementById('彈窗-故事文字').innerText = drink.story;
-        
-        const 步驟區 = document.getElementById('彈窗-步驟區');
-        步驟區.innerHTML = `
-            <div class="圖標工具列">
-                <span class="工具標籤"><i class="bi bi-funnel"></i> ${drink.method || '基本調製'}</span>
-                <span class="工具標籤"><i class="bi bi-cup-straw"></i> ${drink.glass || '適當杯型'}</span>
-            </div>
-            <ol class="純文字列表">
-                ${(drink.steps && drink.steps.length > 0) 
-                    ? drink.steps.map(step => `<li>${step}</li>`).join('') 
-                    : '<li style="list-style:none">暫無詳細步驟</li>'}
-            </ol>
-        `;
-
-        const imgEl = document.getElementById('彈窗-圖片');
-        imgEl.src = drink.img;
-        
-        // 愛心按鈕邏輯...
-        let wrapper = imgEl.closest('.img-container');
-        if (!wrapper) {
-            wrapper = document.createElement('div');
-            wrapper.className = 'img-container';
-            imgEl.parentNode.insertBefore(wrapper, imgEl);
-            wrapper.appendChild(imgEl);
-            const heartBtn = document.createElement('div');
-            heartBtn.id = 'modal-heart-btn';
-            wrapper.appendChild(heartBtn);
-        }
-        
-        const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-        const 有人登入嗎 = localStorage.getItem('微醺圖書館_訪客名字');
-        const isFav = 有人登入嗎 && 收藏清單.includes(drink.id);
-        const 愛心Class = isFav ? '已收藏' : '';
-        const 愛心Icon = isFav ? 'bi-heart-fill' : 'bi-heart';
-
-        const heartBtn = document.getElementById('modal-heart-btn');
-        heartBtn.className = `愛心按鈕 ${愛心Class}`;
-        heartBtn.innerHTML = `<i class="bi ${愛心Icon} 愛心圖示"></i>`;
-        heartBtn.onclick = (e) => 切換收藏狀態(drink.id, e);
-
-        const 重抽按鈕 = document.getElementById('單抽重選按鈕');
-        if (重抽按鈕) 重抽按鈕.style.display = isRandom ? 'block' : 'none';
-
-        切換分頁('故事'); // 使用分流器，傳入字串，自動切到故事
-        我的彈窗.show();
-    }
-
-    // 這是實際執行卡片內容切換的函式
-    function 切換卡片內容Tab(模式) {
-        const 故事區 = document.getElementById('彈窗-故事文字');
-        const 步驟區 = document.getElementById('彈窗-步驟區');
-        const 鈕故事 = document.getElementById('鈕-故事');
-        const 鈕步驟 = document.getElementById('鈕-步驟');
-
-        if (模式 === '故事') {
-            故事區.style.display = 'block';
-            步驟區.style.display = 'none';
-            鈕故事.classList.add('啟動');
-            鈕步驟.classList.remove('啟動');
-        } else {
-            故事區.style.display = 'none';
-            步驟區.style.display = 'block';
-            鈕故事.classList.remove('啟動');
-            鈕步驟.classList.add('啟動');
-        }
-    }
-
-    // JS 8 (功能：重置搜尋、智慧導覽列滾動、收藏邏輯)
-    // ==========================================
-    // 6. 其他功能 (重置、隱藏導覽列、收藏...)
-    // ==========================================
-    function 回到首頁() {
-        document.getElementById('搜尋輸入').value = '';
-        if(document.getElementById('搜尋輸入_手機')) document.getElementById('搜尋輸入_手機').value = '';
-        const ids = ['篩選-基酒', '篩選-濃度', '篩選-口感', '篩選-基酒-手機', '篩選-濃度-手機', '篩選-口感-手機'];
-        ids.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = 'all';
-        });
-        執行篩選();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // 智慧導覽列
-    let lastScrollTop = 0;
-    const 導覽列 = document.querySelector('.頂部篩選列'); 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.innerWidth < 768) {
-            if (scrollTop > lastScrollTop && scrollTop > 50) {
-                導覽列.classList.add('nav-up'); 
-            } else {
-                導覽列.classList.remove('nav-up'); 
-            }
-        }
-        lastScrollTop = scrollTop;
-    });
-
-    // 收藏與登入邏輯
-    function 切換收藏狀態(id, event) {
-        if (event) event.stopPropagation();
-        if (!localStorage.getItem('微醺圖書館_訪客名字')) {
-            alert("請先登入會員，才能使用收藏功能！");
-            const 登入彈窗實體 = new bootstrap.Modal(document.getElementById('登入彈窗'));
-            登入彈窗實體.show();
-            return;
-        }
-        let 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-        const index = 收藏清單.indexOf(id);
-        let 訊息 = "";
-        if (index === -1) {
-            收藏清單.push(id);
-            訊息 = "已加入您的酒單";
-            更新UI狀態(id, true);
-        } else {
-            收藏清單.splice(index, 1);
-            訊息 = "已退出您的酒單";
-            更新UI狀態(id, false);
-        }
-        localStorage.setItem('我的收藏清單', JSON.stringify(收藏清單));
-        顯示通知(訊息);
-        const 名字 = localStorage.getItem('微醺圖書館_訪客名字');
-        切換至歡迎介面(名字);
-    }
-
-    function 更新UI狀態(id, isFav) {
-        const iconHtml = `<i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'} 愛心圖示"></i>`;
-        const action = isFav ? 'add' : 'remove';
-        const cardHeart = document.getElementById(`card-heart-${id}`);
-        if (cardHeart) { cardHeart.classList[action]('已收藏'); cardHeart.innerHTML = iconHtml; }
-        const modalHeart = document.getElementById('modal-heart-btn');
-        if (modalHeart && 當前酒杯ID === id) { modalHeart.classList[action]('已收藏'); modalHeart.innerHTML = iconHtml; }
-        const courseHeart = document.getElementById(`course-heart-${id}`);
-        if (courseHeart) { courseHeart.classList[action]('已收藏'); courseHeart.innerHTML = iconHtml; }
-    }
-
-    function 顯示通知(文字) {
-        const box = document.getElementById('通知框');
-        if (box) { box.innerText = 文字; box.style.opacity = '1'; setTimeout(() => { box.style.opacity = '0'; }, 800); }
-    }
-
-    // JS 9 (初始化載入與會員登入登出邏輯)
-  window.onload = function() {
-    const 儲存的名字 = localStorage.getItem('微醺圖書館_訪客名字');
-    if (儲存的名字) 切換至歡迎介面(儲存的名字);
-    
-    // 原本是直接渲染，現在改為「執行串接函式」
-    串接本地後端資料(); 
-};
-
-    function 執行彈窗登入() {
-        const 帳號輸入框 = document.getElementById('彈窗使用者帳號');
-        const 使用者名稱 = 帳號輸入框.value.trim();
-        if (使用者名稱 === "") { alert("請輸入您的稱呼"); return; }
-        localStorage.setItem('微醺圖書館_訪客名字', 使用者名稱);
-        const 登入彈窗實體 = bootstrap.Modal.getInstance(document.getElementById('登入彈窗'));
-        登入彈窗實體.hide();
-        切換至歡迎介面(使用者名稱);
-        渲染酒卡(當前顯示列表);
-    }
-
-    function 切換至歡迎介面(名字) {
-        const 會員區塊 = document.querySelector('.會員中心區');
-        const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-        會員區塊.innerHTML = `
-          <div class="歡迎容器" style="padding: 10px 0;">
-            <h6 class="金色文字" style="margin-bottom: 5px;">晚安，${名字}</h6>
-            <button class="btn p-0 text-start" onclick="只顯示收藏()" style="border:none; background:none;">
-                <p class="白色透明文字 小字體" style="font-size: 0.9rem; cursor: pointer;">
-                    已收藏 <span class="金色文字" style="text-decoration: underline;">${收藏清單.length}</span> 杯調酒
-                </p>
-            </button>
-            <div class="mt-2">
-                <a href="#" class="導覽連結 白色文字" onclick="處理登出()">
-                    <i class="bi bi-box-arrow-right me-2"></i> 登出
-                </a>
-            </div>
-          </div>
-        `;
-    }
-
-    function 只顯示收藏() {
-        const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-        if (收藏清單.length === 0) { alert("您目前還沒有收藏任何調酒喔！"); return; }
-        const 收藏的酒 = cocktails.filter(item => 收藏清單.includes(item.id));
-        當前頁碼 = 1;
-        渲染酒卡(收藏的酒);
-        const 側邊欄元素 = document.getElementById('側邊選單本體');
-        const 側邊欄實例 = bootstrap.Offcanvas.getInstance(側邊欄元素);
-        if (側邊欄實例) 側邊欄實例.hide();
-        顯示通知(`顯示 ${收藏的酒.length} 杯珍藏調酒`);
-    }
-
-    function 處理登出() {
-        localStorage.removeItem('微醺圖書館_訪客名字');
-        location.reload(); 
-    }
-
-    // JS 10 (隨機選酒功能)
-    function 隨機選酒邏輯() {
-        const 總共有幾款酒 = cocktails.length;
-        const 隨機索引 = Math.floor(Math.random() * 總共有幾款酒);
-        const 被抽中的酒 = cocktails[隨機索引];
-        顯示詳細資訊(被抽中的酒.id, true);
-        const 側邊欄 = bootstrap.Offcanvas.getInstance(document.getElementById('側邊選單本體'));
-        if (側邊欄) 側邊欄.hide();
-    }
-
-    // JS 11 (微醺套餐演算法)
-    function 生成微醺套餐() {
-        const starters = cocktails.filter(c => c.abvLevel === 'low' || c.taste === '清爽/氣泡');
-        const mains = cocktails.filter(c => c.abvLevel === 'med' || c.taste === '酸甜/果香' || c.taste === '苦甜/大人味');
-        const closers = cocktails.filter(c => c.abvLevel === 'high' || c.taste === '辛辣/不甜');
-        const pickOne = (arr) => (arr.length === 0) ? cocktails[0] : arr[Math.floor(Math.random() * arr.length)];
-
-        let course1 = pickOne(starters);
-        let course2 = pickOne(mains);
-        while (course2.id === course1.id) { course2 = pickOne(mains); }
-        let course3 = pickOne(closers);
-        while (course3.id === course2.id || course3.id === course1.id) { course3 = pickOne(closers); }
-
-        const 套餐組合 = [course1, course2, course3];
-        const 階段名稱 = ["Starter (開胃前菜)", "Main (微醺主菜)", "Closer (完美收尾)"];
-        const 階段描述 = ["清爽 • 低負擔", "層次 • 風味強烈", "濃烈 • 甜蜜句點"];
-
-        const 容器 = document.getElementById('套餐內容容器');
-        容器.innerHTML = '';
-
-        套餐組合.forEach((drink, index) => {
-            const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
-            const isFav = 收藏清單.includes(drink.id);
-            const 愛心Class = isFav ? '已收藏' : '';
-            const 愛心Icon = isFav ? 'bi-heart-fill' : 'bi-heart';
-
-            const col = document.createElement('div');
-            col.className = 'col-md-4';
-            col.innerHTML = `
-                <div class="h-100 position-relative" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; overflow: hidden;">
-                    <div class="p-2 text-center" style="background: rgba(197, 160, 89, 0.1); border-bottom: 1px solid rgba(197, 160, 89, 0.2);">
-                        <span class="d-block text-warning fw-bold">${階段名稱[index]}</span>
-                        <small class="text-white-50" style="font-size: 0.8rem;">${階段描述[index]}</small>
-                    </div>
-                    <div style="position: relative; cursor: pointer;" onclick="關閉套餐彈窗(); setTimeout(() => 顯示詳細資訊(${drink.id}), 300);">
-                        <img src="${drink.img}" class="w-100" style="height: 250px; object-fit: cover;">
-                        <div class="愛心按鈕 ${愛心Class}" style="top: 10px; right: 10px;" 
-                             onclick="切換收藏狀態(${drink.id}, event); event.stopPropagation();" id="course-heart-${drink.id}">
-                            <i class="bi ${愛心Icon} 愛心圖示"></i>
-                        </div>
-                    </div>
-                    <div class="p-3 text-center">
-                        <h5 class="金色文字 mb-1">${drink.name}</h5>
-                        <div class="text-white-50 small">
-                            <span>${Array.isArray(drink.base) ? drink.base.join('/') : drink.base}</span> | 
-                            <span>${drink.abvDisplay}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            容器.appendChild(col);
-        });
-
-        const 套餐ModalEl = document.getElementById('套餐彈窗');
-        const 套餐Modal實例 = bootstrap.Modal.getOrCreateInstance(套餐ModalEl);
-        if (!套餐ModalEl.classList.contains('show')) 套餐Modal實例.show();
-        
-        const 側邊欄 = bootstrap.Offcanvas.getInstance(document.getElementById('側邊選單本體'));
-        if(側邊欄) 側邊欄.hide();
-    }
-
-    function 關閉套餐彈窗() {
-        const el = document.getElementById('套餐彈窗');
-        const modal = bootstrap.Modal.getInstance(el);
-        if (modal) {
-            modal.hide();
-            setTimeout(() => {
-                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                document.body.style.overflow = 'auto';
-                document.body.classList.remove('modal-open');
-            }, 350);
-        }
-    }
-
-    // JS 12 (彈窗內左右切換與鍵盤導覽)
-    // 鍵盤導覽
-    function 切換相鄰調酒(方向) {
-        if (!當前酒杯ID) return;
-        const 當前索引 = 當前顯示列表.findIndex(item => item.id === 當前酒杯ID);
-        let 下一個索引 = 當前索引 + 方向;
-        if (下一個索引 < 0) 下一個索引 = 當前顯示列表.length - 1; 
-        if (下一個索引 >= 當前顯示列表.length) 下一個索引 = 0;   
-        const 下一杯酒 = 當前顯示列表[下一個索引];
-        const 重抽按鈕 = document.getElementById('單抽重選按鈕');
-        const 是隨機模式嗎 = 重抽按鈕 ? 重抽按鈕.style.display === 'block' : false;
-        顯示詳細資訊(下一杯酒.id, 是隨機模式嗎);
-    }
-
-    document.addEventListener('keydown', function(event) {
-        const 彈窗元素 = document.getElementById('詳情彈窗');
-        if (彈窗元素 && 彈窗元素.classList.contains('show')) {
-            if (event.key === 'ArrowLeft') 切換相鄰調酒(-1);
-            else if (event.key === 'ArrowRight') 切換相鄰調酒(1);
-        }
-    });
-
-    // JS 13 (事件監聽器綁定)
-    // 自動綁定監聽器
-    document.addEventListener("DOMContentLoaded", function() {
-        const inputs = document.querySelectorAll('select, input[type="text"]');
-        inputs.forEach(el => {
-            if (el.id.includes('篩選') || el.id.includes('搜尋')) {
-                el.addEventListener('input', 執行篩選);
-                el.addEventListener('change', 執行篩選);
-            }
-        });
-    });
-
-    // JS 14 (圖片載入錯誤處理 - 防呆機制)
-    document.addEventListener('error', function(e) {
-    if (e.target.tagName.toLowerCase() === 'img') {
-        // 替換成一張預設的高級感「酒保正在調酒」或「Logo」圖片
-        e.target.src = 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80';
-        e.target.alt = '圖片暫時缺貨';
-    }
-}, true); // 使用捕獲階段確保能抓到錯誤
-
-
-// JS 15 (新) - 串接本地後端 API 的功能
-async function 串接本地後端資料() {
     try {
-        // 向你的本地伺服器發出請求
-        const response = await fetch('https://tipsy-server.onrender.com/api/cocktails');
-        
-        // 將得到的 JSON 資料轉換成 JS 陣列
-        cocktails = await response.json();
-        
-        console.log("✅ 成功從後端抓到資料了！", cocktails);
-        
-        // 資料拿到後，立刻畫出酒卡
-        渲染酒卡(cocktails);
-        
-    } catch (error) {
-        console.error("❌ 抓取失敗，請確認你的 node server.js 有沒有啟動！", error);
-        alert("目前無法連線到後端伺服器，請檢查開發環境。");
+        // 呼叫後端，這時 id 已經是正確的 _id 了
+        const res = await fetch(`${API_URL}/cocktails/${id}/collect`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            // 更新本地清單
+            localStorage.setItem('我的收藏清單', JSON.stringify(data.favorites));
+            
+            // 更新 UI
+            const isFav = data.favorites.includes(String(id)) || data.favorites.includes(id);
+            更新UI狀態(id, isFav);
+            
+            顯示通知(data.message);
+            
+            // 更新側邊欄數字
+            const user = JSON.parse(localStorage.getItem('tipsy_user'));
+            切換至歡迎介面(user);
+        }
+    } catch (err) {
+        console.error("收藏操作失敗", err);
+        alert("操作失敗，請檢查網路");
     }
 }
+
+// 3. 更新 UI 上的愛心圖示
+function 更新UI狀態(id, isFav) {
+    const iconHtml = `<i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'} 愛心圖示"></i>`;
+    const action = isFav ? 'add' : 'remove';
+    
+    // 更新列表上的愛心
+    const cardHeart = document.getElementById(`card-heart-${id}`);
+    if (cardHeart) { cardHeart.classList[action]('已收藏'); cardHeart.innerHTML = iconHtml; }
+    
+    // 更新彈窗裡的愛心
+    const modalHeart = document.getElementById('modal-heart-btn');
+    if (modalHeart && 當前酒杯ID === id) { modalHeart.classList[action]('已收藏'); modalHeart.innerHTML = iconHtml; }
+}
+
+// 4. 分頁切換器
+function 切換分頁(參數) {
+    if (typeof 參數 === 'number') {
+        執行頁碼切換(參數);
+    } else {
+        切換卡片內容Tab(參數);
+    }
+}
+
+function 執行頁碼切換(目標頁碼) {
+    const 總頁數 = Math.ceil(當前顯示列表.length / 每頁數量) || 1;
+    if (目標頁碼 > 總頁數) 目標頁碼 = 總頁數;
+    if (目標頁碼 < 1) 目標頁碼 = 1;
+    當前頁碼 = 目標頁碼;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    渲染酒卡(當前顯示列表);
+}
+
+// ==========================================
+// 🔥 [輔助功能] 彈窗詳情、篩選、通知
+// ==========================================
+
+const 我的彈窗 = new bootstrap.Modal(document.getElementById('詳情彈窗'));
+
+// 1. 顯示詳情彈窗 - 已修正 _id 查找問題
+function 顯示詳細資訊(id, isRandom = false) {
+    當前酒杯ID = id;
+    
+    // 🔥 這裡改用 _id 來尋找酒的資料
+    const drink = cocktails.find(item => item._id === id);
+    if (!drink) return;
+
+    document.getElementById('彈窗-標題').innerText = drink.name;
+    let modalBase = Array.isArray(drink.base) ? drink.base.join(' / ') : drink.base;
+    document.getElementById('彈窗-基酒').innerText = modalBase;
+    document.getElementById('彈窗-濃度').innerText = drink.abvDisplay;
+    document.getElementById('彈窗-口感').innerText = drink.taste;
+    document.getElementById('彈窗-材料列表').innerText = drink.ingredients;
+    document.getElementById('彈窗-故事文字').innerText = drink.story;
+    
+    // 渲染步驟
+    const 步驟區 = document.getElementById('彈窗-步驟區');
+    步驟區.innerHTML = `
+        <div class="圖標工具列">
+            <span class="工具標籤"><i class="bi bi-funnel"></i> ${drink.method || '基本調製'}</span>
+            <span class="工具標籤"><i class="bi bi-cup-straw"></i> ${drink.glass || '適當杯型'}</span>
+        </div>
+        <ol class="純文字步驟列表">
+            ${(drink.steps && drink.steps.length > 0) 
+                ? drink.steps.map(step => `<li>${step}</li>`).join('') 
+                : '<li style="list-style:none">暫無詳細步驟</li>'}
+        </ol>
+    `;
+
+    // 處理圖片
+    const imgEl = document.getElementById('彈窗-圖片');
+    imgEl.src = drink.img;
+    
+    // 處理彈窗內的愛心
+    let wrapper = imgEl.closest('.img-container');
+    if (!wrapper) {
+        wrapper = document.createElement('div');
+        wrapper.className = 'img-container';
+        imgEl.parentNode.insertBefore(wrapper, imgEl);
+        wrapper.appendChild(imgEl);
+        const heartBtn = document.createElement('div');
+        heartBtn.id = 'modal-heart-btn';
+        wrapper.appendChild(heartBtn);
+    }
+    
+    const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
+    // 🔥 修正 ID 判斷
+    const isFav = 收藏清單.includes(drink._id);
+    const 愛心Class = isFav ? '已收藏' : '';
+    const 愛心Icon = isFav ? 'bi-heart-fill' : 'bi-heart';
+
+    const heartBtn = document.getElementById('modal-heart-btn');
+    heartBtn.className = `愛心按鈕 ${愛心Class}`;
+    heartBtn.innerHTML = `<i class="bi ${愛心Icon} 愛心圖示"></i>`;
+    heartBtn.onclick = (e) => 切換收藏狀態(drink._id, e); // 🔥 這裡也傳 _id
+
+    const 重抽按鈕 = document.getElementById('單抽重選按鈕');
+    if (重抽按鈕) 重抽按鈕.style.display = isRandom ? 'block' : 'none';
+
+    切換卡片內容Tab('故事');
+    我的彈窗.show();
+}
+
+// 2. 切換故事/步驟
+function 切換卡片內容Tab(模式) {
+    const 故事區 = document.getElementById('彈窗-故事文字');
+    const 步驟區 = document.getElementById('彈窗-步驟區');
+    const 鈕故事 = document.getElementById('鈕-故事');
+    const 鈕步驟 = document.getElementById('鈕-步驟');
+
+    if (模式 === '故事') {
+        故事區.style.display = 'block';
+        步驟區.style.display = 'none';
+        鈕故事.classList.add('啟動');
+        鈕步驟.classList.remove('啟動');
+    } else {
+        故事區.style.display = 'none';
+        步驟區.style.display = 'block';
+        鈕故事.classList.remove('啟動');
+        鈕步驟.classList.add('啟動');
+    }
+}
+
+// 3. 篩選邏輯
+function 執行篩選() {
+    const 電腦搜 = document.getElementById('搜尋輸入').value.trim();
+    const 手機搜 = document.getElementById('搜尋輸入_手機') ? document.getElementById('搜尋輸入_手機').value.trim() : '';
+    const 關鍵字 = (電腦搜 || 手機搜).toLowerCase();
+
+    const 取得值 = (電腦ID, 手機ID) => {
+        const 電腦值 = document.getElementById(電腦ID).value;
+        const 手機元件 = document.getElementById(手機ID);
+        const 手機值 = 手機元件 ? 手機元件.value : 'all';
+        return (電腦值 !== 'all') ? 電腦值 : 手機值;
+    };
+
+    const 選到的基酒 = 取得值('篩選-基酒', '篩選-基酒-手機');
+    const 選到的濃度 = 取得值('篩選-濃度', '篩選-濃度-手機');
+    const 選到的口感 = 取得值('篩選-口感', '篩選-口感-手機');
+
+    const 篩選結果 = cocktails.filter(item => {
+        const 名字符合 = item.name.toLowerCase().includes(關鍵字);
+        const 材料符合 = item.ingredients.toLowerCase().includes(關鍵字);
+        const 搜尋符合 = 關鍵字 === "" || 名字符合 || 材料符合;
+
+        let 基酒符合 = (選到的基酒 === 'all') ? true : 
+            (Array.isArray(item.base) ? item.base.includes(選到的基酒) : item.base === 選到的基酒);
+        
+        const 濃度符合 = (選到的濃度 === 'all' || item.abvLevel === 選到的濃度);
+        const 口感符合 = (選到的口感 === 'all' || item.taste === 選到的口感);
+
+        return 搜尋符合 && 基酒符合 && 濃度符合 && 口感符合;
+    });
+
+    當前頁碼 = 1; 
+    渲染酒卡(篩選結果);
+}
+
+// 4. 只顯示收藏
+function 只顯示收藏() {
+    const 收藏清單 = JSON.parse(localStorage.getItem('我的收藏清單')) || [];
+    // 🔥 修正為比對 _id
+    const 收藏的酒 = cocktails.filter(item => 收藏清單.includes(item._id));
+    
+    if (收藏的酒.length === 0) { alert("您目前還沒有收藏任何調酒喔！"); return; }
+    
+    當前頁碼 = 1;
+    渲染酒卡(收藏的酒);
+    
+    const 側邊欄 = bootstrap.Offcanvas.getInstance(document.getElementById('側邊選單本體'));
+    if (側邊欄) 側邊欄.hide();
+    顯示通知(`顯示 ${收藏的酒.length} 杯珍藏調酒`);
+}
+
+// 5. 隨機選酒
+function 隨機選酒邏輯() {
+    if (cocktails.length === 0) return;
+    const 隨機索引 = Math.floor(Math.random() * cocktails.length);
+    const 被抽中的酒 = cocktails[隨機索引];
+    顯示詳細資訊(被抽中的酒._id, true); // 🔥 這裡也傳 _id
+    
+    const 側邊欄 = bootstrap.Offcanvas.getInstance(document.getElementById('側邊選單本體'));
+    if (側邊欄) 側邊欄.hide();
+}
+
+// 6. 其他輔助函式
+function 顯示通知(文字) {
+    const box = document.getElementById('通知框');
+    if (box) { box.innerText = 文字; box.style.opacity = '1'; setTimeout(() => { box.style.opacity = '0'; }, 800); }
+}
+
+function 回到首頁() {
+    document.getElementById('搜尋輸入').value = '';
+    if(document.getElementById('搜尋輸入_手機')) document.getElementById('搜尋輸入_手機').value = '';
+    const ids = ['篩選-基酒', '篩選-濃度', '篩選-口感', '篩選-基酒-手機', '篩選-濃度-手機', '篩選-口感-手機'];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = 'all';
+    });
+    執行篩選();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 自動綁定搜尋框事件
+document.addEventListener("DOMContentLoaded", function() {
+    const inputs = document.querySelectorAll('select, input[type="text"]');
+    inputs.forEach(el => {
+        if (el.id.includes('篩選') || el.id.includes('搜尋')) {
+            el.addEventListener('input', 執行篩選);
+            el.addEventListener('change', 執行篩選);
+        }
+    });
+});
 
     </script>
 </body>
