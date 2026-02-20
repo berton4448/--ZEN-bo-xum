@@ -1612,6 +1612,196 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+// ==========================================
+// 🔥 [新增功能區] 滑動切換、頁碼防呆、微醺套餐
+// (絕對不影響上方原有程式碼)
+// ==========================================
+
+// ------------------------------------------
+// 1. 切換相鄰調酒 (左右箭頭 + 手機滑動)
+// ------------------------------------------
+function 切換相鄰調酒(方向) {
+    if (!當前酒杯ID) return;
+    
+    const currentIndex = 當前顯示列表.findIndex(drink => drink._id === 當前酒杯ID);
+    if (currentIndex === -1) return;
+
+    let nextIndex = currentIndex + 方向;
+    
+    if (nextIndex < 0) nextIndex = 當前顯示列表.length - 1;
+    if (nextIndex >= 當前顯示列表.length) nextIndex = 0;
+
+    const nextDrink = 當前顯示列表[nextIndex];
+    顯示詳細資訊(nextDrink._id);
+}
+
+// 監聽鍵盤左右方向鍵
+document.addEventListener('keydown', function(event) {
+    const modalElement = document.getElementById('詳情彈窗');
+    if (modalElement && modalElement.classList.contains('show')) {
+        if (event.key === 'ArrowLeft') 切換相鄰調酒(-1);
+        else if (event.key === 'ArrowRight') 切換相鄰調酒(1);
+    }
+});
+
+// 手機版：觸控滑動切換邏輯
+let 觸控起始X = 0;
+let 觸控結束X = 0;
+const 彈窗元素 = document.getElementById('詳情彈窗');
+
+if (彈窗元素) {
+    彈窗元素.addEventListener('touchstart', (e) => {
+        觸控起始X = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    彈窗元素.addEventListener('touchend', (e) => {
+        觸控結束X = e.changedTouches[0].screenX;
+        const 滑動距離 = 觸控結束X - 觸控起始X;
+        if (滑動距離 < -50) 切換相鄰調酒(1);  // 向左滑 -> 看下一杯
+        if (滑動距離 > 50) 切換相鄰調酒(-1); // 向右滑 -> 看上一杯
+    }, { passive: true });
+}
+
+// ------------------------------------------
+// 2. 處理頁碼輸入跳轉 (精準防呆)
+// ------------------------------------------
+function 處理輸入跳轉(輸入值) {
+    const 總數 = 當前顯示列表.length;
+    const 總頁數 = Math.ceil(總數 / 每頁數量) || 1;
+    const 目標頁 = parseInt(輸入值, 10);
+    const 輸入框 = document.getElementById('頁碼輸入框');
+    
+    // 防呆 A：如果輸入非數字 (例如中英文字)
+    if (isNaN(目標頁)) {
+        輸入框.value = 當前頁碼; // 恢復原本頁碼
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // 跳回最上面
+        return;
+    }
+
+    // 防呆 B：輸入負數或 0，跳回第一頁
+    if (目標頁 < 1) {
+        切換分頁(1);
+    } 
+    // 防呆 C：輸入超過最大頁數，跳到最後一頁
+    else if (目標頁 > 總頁數) {
+        切換分頁(總頁數);
+    } 
+    // 正常範圍：跳轉到指定頁面
+    else {
+        切換分頁(目標頁);
+    }
+}
+
+// ------------------------------------------
+// 3. 漸進式層次微醺套餐 (Low -> Med -> High)
+// ------------------------------------------
+function 生成微醺套餐() {
+    // 依據酒精濃度分類
+    const 低濃度酒單 = cocktails.filter(c => c.abvLevel === 'low');
+    const 中濃度酒單 = cocktails.filter(c => c.abvLevel === 'med');
+    const 高濃度酒單 = cocktails.filter(c => c.abvLevel === 'high');
+
+    if (低濃度酒單.length === 0 || 中濃度酒單.length === 0 || 高濃度酒單.length === 0) {
+        alert("目前酒單庫資料不足以生成漸進套餐，請稍後再試！");
+        return;
+    }
+
+    // 隨機抽出一杯的工具
+    const 抽出一杯 = (陣列) => 陣列[Math.floor(Math.random() * 陣列.length)];
+    
+    // 確保三杯來自不同層次，絕對不會重複
+    const 套餐 = [
+        抽出一杯(低濃度酒單),
+        抽出一杯(中濃度酒單),
+        抽出一杯(高濃度酒單)
+    ];
+
+    const 容器 = document.getElementById('套餐內容容器');
+    if (!容器) return;
+    容器.innerHTML = ''; 
+
+    const 順序標籤 = ['🍸 第一杯：喚醒 (微醺)', '🍷 第二杯：漸入 (適中)', '🥃 第三杯：沉醉 (濃烈)'];
+
+    // 渲染卡片
+    套餐.forEach((drink, index) => {
+        const 顯示基酒 = Array.isArray(drink.base) ? drink.base.join(' / ') : drink.base;
+        const col = document.createElement('div');
+        col.className = 'col-md-4';
+        
+        col.innerHTML = `
+            <div class="card 特調酒卡" style="background: #2a2a2a; cursor: pointer; height: 100%;" onclick="顯示詳細資訊('${drink._id}')">
+                <img src="${drink.img}" class="card-img-top" alt="${drink.name}" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <span class="badge text-dark mb-2" style="background-color: var(--奢華金色);">${順序標籤[index]}</span>
+                    <h6 class="card-title mt-2" style="color: var(--奢華金色);">${drink.name}</h6>
+                    <small class="text-white-50">${顯示基酒} | ${drink.abvDisplay}</small>
+                    <p class="text-light mt-2" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                        ${drink.story}
+                    </p>
+                </div>
+            </div>
+        `;
+        容器.appendChild(col);
+    });
+
+    // 關閉側邊欄
+    const 側邊欄元件 = document.getElementById('側邊選單本體');
+    if (側邊欄元件) {
+        const 側邊欄 = bootstrap.Offcanvas.getInstance(側邊欄元件);
+        if (側邊欄) 側邊欄.hide();
+    }
+
+    // 開啟套餐彈窗 (安全寫法：防止重複生成黑色遮罩)
+    
+    const 套餐彈窗元素 = document.getElementById('套餐彈窗');
+    const 套餐彈窗實體 = bootstrap.Modal.getOrCreateInstance(套餐彈窗元素);
+    
+    // 只有在彈窗「還沒打開」的時候，才需要執行 show() 把黑布鋪出來
+    if (!套餐彈窗元素.classList.contains('show')) {
+        套餐彈窗實體.show();
+    }
+}
+
+// ==========================================
+// 🔥 [修復] 完美實現「雙重彈窗」：詳情疊在套餐之上
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const 詳情彈窗元素 = document.getElementById('詳情彈窗');
+    const 套餐彈窗元素 = document.getElementById('套餐彈窗');
+
+    if (詳情彈窗元素 && 套餐彈窗元素) {
+        
+        // 1. 當「詳情彈窗」打開時：強制把圖層拉到最高
+        詳情彈窗元素.addEventListener('show.bs.modal', function () {
+            // Bootstrap 預設圖層高度是 1055，我們把它拉高到 1080 蓋過套餐
+            this.style.zIndex = '1080';
+            
+            // 等待幾毫秒讓 Bootstrap 生成黑色半透明遮罩後，把最上面那個遮罩的圖層也拉高
+            setTimeout(() => {
+                const 遮罩們 = document.querySelectorAll('.modal-backdrop');
+                if (遮罩們.length > 0) {
+                    // 抓取最後一個生成的遮罩（屬於詳情彈窗的）
+                    遮罩們[遮罩們.length - 1].style.zIndex = '1075';
+                }
+            }, 50);
+        });
+
+        // 2. 當「詳情彈窗」關閉時：善後處理
+        詳情彈窗元素.addEventListener('hidden.bs.modal', function () {
+            // 把圖層高度還原
+            this.style.zIndex = '';
+            
+            // 💡 關鍵修復：Bootstrap 關閉上方彈窗時，會誤以為「所有」彈窗都關了，導致底下的套餐不能滑動。
+            // 所以我們檢查一下：如果套餐還開著，就強制讓網頁保持「彈窗開啟中」的狀態。
+            if (套餐彈窗元素.classList.contains('show')) {
+                document.body.classList.add('modal-open');
+            }
+        });
+
+    }
+});
+
     </script>
 </body>
 </html>
